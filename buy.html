@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment page</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        div.body {
+            margin: 10px auto;
+            display: flex;
+            border: 2px solid black;
+            border-radius: 10px;
+            width: 300px;
+            height: 250px;
+            text-align: left;
+            padding: 0 10%;
+        }
+
+        h4 {
+            background: yellow;
+            width: 300px;
+        }
+
+        #cash {
+            margin-top: 20px;
+            color: yellow;
+        }
+
+        span {
+            font-size: bolder;
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 10px 30px;
+            border-radius: 25%;
+            background: radial-gradient(white, gold);
+            transition: 0.5s;
+        }
+
+        button:hover {
+            background: radial-gradient(white, green);
+        }
+
+        .note {
+            margin-top: 20px;
+            background: lightyellow;
+        }
+    </style>
+</head>
+
+<body align="center">
+    <div id="nav"></div>
+    <img src="images/prog.png" alt="">
+    <h2>Payment Method</h2>
+    <p>Pay faster for all your shopping needs,
+        Get Instant refund on cancellations | Zero payment failures</p>
+
+    <div class="body">
+        <form id="f1">
+
+            <input type="radio" name="method" id="card" value="card" onclick="pay()"><span>By Card</span>
+            <div id="cardpay"></div>
+            <input type="radio" name="method" id="cash" value="on" onclick="pay2()"><span> Pay on Delivery</span>
+
+        </form>
+    </div>
+    <script>
+        function pay() {
+            if (document.getElementById("card").checked) {
+                document.getElementById("cardpay").innerHTML = "<h4>Your credentials are safe</h4>" + "<table><tr><td><label for='cn'>Card Number</label></td>" +
+                    "<td><input type='text' id='cn' name='cn'></td></tr>" +
+                    "<tr><td><label for='name'>Name on the Card</label></td>"
+                    + "<td><input type='text' id='name' name='name'></td></tr>"
+                    + "<tr><td><label for='name'>Expiry Date</label></td>"
+                    + "<td><input type='text' id='date' name='date' placeholder='YYYY/MM'</td></tr><br>"
+            }
+        }
+        function pay2() {
+            document.getElementById("cardpay").innerHTML = ""
+        }
+        function submit() {
+            if (document.getElementById("card").checked) {
+                var count = 1;
+            }
+            if (document.getElementById("cash").checked) {
+                var count = 2;
+            }
+            if (count == 1) {
+                var ca_nu = document.getElementById("cn").value;
+                var name_card = document.getElementById("name").value;
+                var date_card = document.getElementById("date").value;
+                if (ca_nu.length == 12 && name_card.length > 3 && date_card != null) {
+                    if (confirm("Make payment")) {
+                        alert("Payment Successful!!! Your order is placed");
+                    }
+                    else {
+                        alert("Please fill credentials correctly!!")
+                    }
+                }
+
+            }
+            else if (count == 2) {
+                if (confirm("Place Order")) {
+                    alert("Order Placed");
+                }
+
+            }
+            else {
+                alert("Please select payment method")
+            }
+        }
+
+
+    </script>
+    <button type="submit" onclick="submit()">PAY</button>
+    <p class="note"><b>Note:</b> If payment doesn't procced it means you must be filled some wrong input</p>
+</body>
+
+</html>
